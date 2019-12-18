@@ -1,0 +1,43 @@
+package com.demoweb.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("*.action")
+public class FrontControllerServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// 1. 요청분석
+		String uri = req.getRequestURI();
+//		System.out.println(uri);
+		if (uri.contains("?")) {
+			uri = uri.substring(0, uri.indexOf("?"));
+		}
+		int from = "/mvc-demoweb/".length();
+		int to = uri.lastIndexOf(".action");
+		String actionName = uri.substring(from, to).replace("/", "_");
+		System.out.println(actionName);
+
+		// 2. 요청 처리기(Controller) 선택
+		// 3. 요청 처리기 호출 (interface method 호출)
+		// 4. 결과에 따라 view 선택
+		// 5. view를 호출 (forward or redirect)
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		doGet(req, resp);
+	}
+
+}

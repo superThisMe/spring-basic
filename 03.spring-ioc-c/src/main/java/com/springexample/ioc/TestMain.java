@@ -1,0 +1,41 @@
+package com.springexample.ioc;
+
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+
+		// 1. 직접 ServiceConsumer 객체 생성 (new 구문 사용)
+		// MyServiceConsumer serviceConsumer = new MyServiceConsumer();
+
+		// 2. 스프링이 제공하는 팩토리(Factory or ApplicationContext) 사용
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("app-context.xml");
+		System.out.println("TEST LINE");
+		ServiceConsumer serviceConsumer = (ServiceConsumer) ctx.getBean("serviceConsumer");
+
+		serviceConsumer.doSomething();
+
+		// 3. lazy-init, init-method, destroy-method, factory-method 속성 테스트
+		// MyServiceConsumer2 c = new MyServiceConsumer2();
+//		MyServiceConsumer2 c = MyServiceConsumer2.newInstance();
+
+		ServiceConsumer serviceConsumer2 = (ServiceConsumer) ctx.getBean("serviceConsumer2");
+		serviceConsumer2.doSomething();
+
+		// 4. scope 속성 테스트
+		// singleton : 메시지의 숫자가 변경되지 않습니다.
+		// prototype : 메시지의 숫자가 변경됩니다.
+		serviceConsumer = (ServiceConsumer) ctx.getBean("serviceConsumer");
+		serviceConsumer.doSomething();
+
+		// 5. autowire 속성 테스트
+		System.out.println("----------------------------------");
+		ServiceConsumer serviceConsumer3 = (ServiceConsumer) ctx.getBean("serviceConsumer3");
+		serviceConsumer3.doSomething();
+
+		ctx.close();
+
+	}
+
+}

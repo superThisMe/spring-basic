@@ -1,0 +1,14 @@
+package com.springexample.ioc;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		// 1. 직접 ServiceConsumer 객체 생성 (new 구문 사용)
+//		MyServiceConsumer serviceConsumer = new MyServiceConsumer();
+		
+		
+
+	}
+
+}

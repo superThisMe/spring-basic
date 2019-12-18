@@ -1,0 +1,34 @@
+import java.lang.reflect.Method;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		ServiceConsumer sc = new ServiceConsumerImpl();
+		
+		sc.doSomething();
+		
+		///////////////////////////////////////////////////
+		
+		try {
+		// "java.lang.String" -> String Class information
+		Class claz = Class.forName("java.lang.String"); // String
+		String s = (String)claz.newInstance(); // new String();
+		System.out.println(s.getClass().toString());
+		
+		// Class's all method -> array -> print
+		Method[] methods = claz.getMethods();
+		for (Method method : methods) {
+			System.out.println(method.getName());
+			
+			if (method.getName().equals("length")) {
+				method.invoke(s);
+			}
+		}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

@@ -1,0 +1,30 @@
+package com.demoweb.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Component;
+
+@Component("account_login")
+public class LoginController implements Controller {
+
+	@Override
+	public ActionResult processRequest(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String method = req.getMethod().toLowerCase(); // 요청 method : get or post
+		ActionResult ar = new ActionResult();
+		if (method.equals("get")) {
+			// login ui 제공
+			ar.setVeiwName("account/login");
+			ar.setRedirect(false);
+		} else {
+			// login process (id, pwd로 database 조회)
+			ar.setVeiwName("/home.action");
+			ar.setRedirect(true);
+		}
+		return ar;
+	}
+
+	
+	
+}

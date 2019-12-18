@@ -1,0 +1,28 @@
+package com.springexample.ioc;
+
+import lombok.Setter;
+
+public class MyServiceConsumer implements ServiceConsumer {
+
+	@Setter
+	private MessageService messageService;
+	@Setter
+	private TimeService timeService;
+
+	public MyServiceConsumer() {}
+	
+	public MyServiceConsumer(MessageService messageService) {
+		this.messageService = messageService;
+	}
+
+	public void doSomething() {
+		// SPRING DI
+		String message = messageService.getMessage();
+		System.out.println(message);
+		message = timeService.getTimeString();
+		System.out.println(message);
+	}
+
+}
+
+ 

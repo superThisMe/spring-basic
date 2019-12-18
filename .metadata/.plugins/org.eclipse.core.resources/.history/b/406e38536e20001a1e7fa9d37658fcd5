@@ -1,0 +1,11 @@
+package com.demoweb.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+public class FrontControllerServlet extends HttpServlet{
+	
+	private static final long serialVersionUID = 1L;
+
+	
+	
+}

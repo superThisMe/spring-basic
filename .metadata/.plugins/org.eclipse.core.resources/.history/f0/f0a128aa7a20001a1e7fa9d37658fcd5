@@ -1,0 +1,7 @@
+package com.demoweb.controller;
+
+public interface Controller {
+
+	
+	
+}

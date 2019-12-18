@@ -1,0 +1,21 @@
+package com.demoweb.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Component;
+
+@Component("account_login")
+public class LoginController implements Controller {
+
+	@Override
+	public ActionResult processRequest(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String method = req.getMethod().toLowerCase(); // 요청 method : get or post
+		
+		return null;
+	}
+
+	
+	
+}

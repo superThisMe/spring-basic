@@ -1,0 +1,36 @@
+import java.lang.reflect.Method;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		ServiceConsumer sc = new ServiceConsumerImpl();
+		
+		sc.doSomething();
+		
+		///////////////////////////////////////////////////
+		
+		try {
+		// "java.lang.String" -> String Class information
+		Class claz = Class.forName("java.lang.String"); // String
+		String s = (String)claz.newInstance(); // new String();
+		System.out.println(s.getClass().toString());
+		
+		// Class's all method -> array -> print
+		Method[] methods = claz.getMethods();
+		for (Method method : methods) {
+			System.out.println(method.getName());
+			
+			if (method.getName().equals("length")) {
+				// invoke() : 지정된 메서드를 실행하는 명령
+				int length = (int)method.invoke(s); // s.length()
+				System.out.println(length);
+			}
+		}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

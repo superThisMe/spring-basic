@@ -1,0 +1,40 @@
+package com.springexample.ioc;
+
+public class MyServiceConsumer implements ServiceConsumer {
+
+	private MessageService messageService;
+	private TimeService timeService;
+
+	public MessageService getMessageService() {
+		return messageService;
+	}
+
+	public void setMessageService(MessageService messageService) {
+		this.messageService = messageService;
+	}
+
+	public TimeService getTimeService() {
+		return timeService;
+	}
+
+	public void setTimeService(TimeService timeService) {
+		this.timeService = timeService;
+	}
+
+	public MyServiceConsumer() {}
+	
+	public MyServiceConsumer(MessageService messageService) {
+		this.messageService = messageService;
+	}
+
+	public void doSomething() {
+		// SPRING DI
+		String message = messageService.getMessage();
+		System.out.println(message);
+		message = timeService.getTimeString();
+		System.out.println(message);
+	}
+
+}
+
+ 

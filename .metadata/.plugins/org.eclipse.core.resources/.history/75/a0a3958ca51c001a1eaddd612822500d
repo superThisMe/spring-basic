@@ -1,0 +1,17 @@
+package com.springexample.ioc;
+
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		// 1. 직접 ServiceConsumer 객체 생성 (new 구문 사용)
+//		MyServiceConsumer serviceConsumer = new MyServiceConsumer();
+		
+		// 2. spring이 제공하는 factory 사용
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+
+	}
+
+}

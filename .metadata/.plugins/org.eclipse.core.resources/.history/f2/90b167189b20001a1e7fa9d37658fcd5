@@ -1,0 +1,7 @@
+package com.demoweb.controller;
+
+public class LoginController implements Controller {
+
+	
+	
+}

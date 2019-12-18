@@ -1,0 +1,11 @@
+package com.springexample.ioc;
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.springexample.ioc;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class MyServiceConsumer implements ServiceConsumer {
+
+	private MessageService messageService;
+	private TimeService timeService;
+
+	public void doSomething() {
+		// DI (constructor injection using lombok)
+		String message = messageService.getMessage();
+		System.out.println(message);
+//		message = timeService.getTimeString();
+//		System.out.println(message);
+	}
+
+}
+
+ 

@@ -1,0 +1,13 @@
+package com.demoweb.controller;
+
+/**
+ * 개별 요청 처리 Controller가 반환하는 데이터 저장 클래스
+ * @author goott6
+ *
+ */
+public class ActionResult {
+
+	private String veiwName; // viewName : 다음 이동할 장소
+	private boolean redirect;
+	
+}

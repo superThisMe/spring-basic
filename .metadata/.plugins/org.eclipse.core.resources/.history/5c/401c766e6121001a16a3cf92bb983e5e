@@ -1,0 +1,72 @@
+package com.example.springmvc;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class DemoController {
+	
+//	@RequestMapping(path = { "/demo/param.action" })
+//	public String processRequest01(HttpServletRequest req) {
+//		
+//		String data1 = req.getParameter("data1");
+//		System.out.println(data1);
+//		
+//		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+//	}
+
+//	@RequestMapping(path = { "/demo/param.action" }, method = RequestMethod.GET)
+	@GetMapping(path = { "/demo/param.action" })
+	public String processRequest01(String data1, int data2) {
+		
+		System.out.println(data1);
+		System.out.printf("data2=%d\n", data2);
+		
+		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+	}
+	
+////	@RequestMapping(path = { "/demo/param.action" }, method = RequestMethod.POST)
+//	@PostMapping(path = { "/demo/param.action" })
+//	public String processRequest02(String name, String phone, String email, int age) {
+//		
+//		System.out.printf("[%s][%s][%s][%d]\n", name, phone, email, age);
+//		
+//		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+//	}
+	
+//	@PostMapping(path = { "/demo/param.action" })
+//	public String processRequest02(Person person) {
+//		
+//		System.out.printf("[%s][%s][%s][%d]\n", person.getName(), person.getPhone(), person.getEmail(), person.getAge());
+//		
+//		return "result";
+//	}
+	
+	// controller -> view 로 data 전달 1 : Model 타입 전달인자
+	@PostMapping(path = { "/demo/param.action" })
+	public String processRequest02(Model model, Person person) {
+		
+		System.out.printf("[%s][%s][%s][%d]\n", person.getName(), person.getPhone(), person.getEmail(), person.getAge());
+		
+		return "result";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

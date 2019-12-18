@@ -1,0 +1,16 @@
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		
+		ServiceConsumer sc = new ServiceConsumerImpl();
+		
+		sc.doSomething();
+		
+		///////////////////////////////////////////////////
+		
+		String [] types = { "String", "java.util.Date", "java.text.SimpleDateFormat" };
+
+	}
+
+}

@@ -1,0 +1,21 @@
+<%@ page language="java" 
+		 contentType="text/html; charset=utf-8"
+    	 pageEncoding="utf-8"%>
+    	 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>result page</title>
+</head>
+<body>
+
+<h1>This is result page</h1>
+
+<h2>[${ requestScope.myPerson.name }]</h2>
+<h2>[${ myPerson.phone }]</h2>
+<h2>[${ myPerson.email }]</h2>
+<h2>[${ myPerson.age }]</h2>
+
+</body>
+</html>

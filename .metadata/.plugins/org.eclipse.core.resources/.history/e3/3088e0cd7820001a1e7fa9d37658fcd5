@@ -1,0 +1,18 @@
+package com.demoweb.controller;
+
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * 개별 요청 처리 Controller가 반환하는 데이터 저장 클래스
+ * @author goott6
+ *
+ */
+public class ActionResult {
+
+	@Setter @Getter
+	private String veiwName; // viewName : 다음 이동(forward or redirect)할 장소
+	@Setter @Getter
+	private boolean redirect; // forward(=false) or redirect(=true)
+	
+}

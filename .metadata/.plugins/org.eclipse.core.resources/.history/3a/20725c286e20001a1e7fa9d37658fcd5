@@ -1,0 +1,5 @@
+package com.demoweb.servlet;
+
+public class FrontControllerServlet {
+
+}

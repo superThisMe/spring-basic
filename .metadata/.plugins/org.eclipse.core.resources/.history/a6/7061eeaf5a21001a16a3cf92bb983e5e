@@ -1,0 +1,37 @@
+package com.example.springmvc;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class DemoController {
+	
+//	@RequestMapping(path = { "/demo/param.action" })
+//	public String processRequest01(HttpServletRequest req) {
+//		
+//		String data1 = req.getParameter("data1");
+//		System.out.println(data1);
+//		
+//		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+//	}
+
+	@RequestMapping(path = { "/demo/param.action" }, method = RequestMethod.GET)
+	public String processRequest01(String data1, int data2) {
+		
+		System.out.println(data1);
+		System.out.printf("data2=%d\n", data2);
+		
+		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+	}
+	
+	@RequestMapping(path = { "/demo/param.action" }, method = RequestMethod.POST)
+	public String processRequest02(String name, String phone, String email, int age) {
+		
+		System.out.printf("[%s][%s][%s][%d]\n", name, phone, email, age);
+		
+		return "result"; // -> "/WEB-INF/views/" + "result" + ".jsp"
+	}
+}
