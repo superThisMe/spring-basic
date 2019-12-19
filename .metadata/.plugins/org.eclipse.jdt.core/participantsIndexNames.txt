@@ -15,6 +15,10 @@ C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\
 \demoweb\src
 C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1740628390.index
 \mvc-demoweb\src\main\resources
+C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\13139992.index
+\05.spring-mvc-c\src\main\java
+C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\679418415.index
+\05.spring-mvc-d\src\main\java
 C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1272431432.index
 \mvc-demoweb\src\main\java
 C:\workspace\spring-basic\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\237988041.index

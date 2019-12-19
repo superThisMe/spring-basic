@@ -4,8 +4,10 @@
 <aop-project name="03.spring-ioc-c"/>
 <aop-project name="03.spring-ioc-d"/>
 <aop-project name="03.spring-ioc-e"/>
+<aop-project name="05.spring-mvc-c"/>
 <aop-project name="05.spring-mvc-a"/>
 <aop-project name="05.spring-mvc-b"/>
+<aop-project name="05.spring-mvc-d"/>
 <aop-project name="mvc-demoweb"/>
 <aop-project name="03.spring-IoC-b-constructor"/>
 </aop-reference-model>

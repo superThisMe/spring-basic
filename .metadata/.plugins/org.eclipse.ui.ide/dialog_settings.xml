@@ -99,4 +99,11 @@
 			<item value="C:\workspace\spring-basic\05.spring-mvc-a"/>
 		</list>
 	</section>
+	<section name="CleanDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="710"/>
+		<item key="DIALOG_Y_ORIGIN" value="242"/>
+		<item key="DIALOG_WIDTH" value="500"/>
+		<item key="DIALOG_HEIGHT" value="418"/>
+		<item key="TOGGLE_SELECTED" value="false"/>
+	</section>
 </section>

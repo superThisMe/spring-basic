@@ -1,0 +1,28 @@
+package com.example.springmvc.view;
+
+import java.io.PrintWriter;
+import java.util.Date;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.View;
+
+// View interface를 implements한 class는 Spring이 View 객체로 사용 가능
+public class MyViewOne implements View {
+
+	@Override
+	public void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		response.setContentType("text/HTML; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.println("<h1>" + new Date().toString() + "</h1>");
+		
+	}
+
+
+		
+	}
