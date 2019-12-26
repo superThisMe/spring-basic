@@ -1,0 +1,21 @@
+package com.springboard.repository;
+
+import java.util.List;
+
+import com.springboard.vo.BoardVO;
+
+public class RawJdbcBoardDao implements BoardDao {
+
+	@Override
+	public int insertBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> selectBoard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

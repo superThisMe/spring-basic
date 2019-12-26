@@ -1,0 +1,12 @@
+package com.springboard.mapper;
+
+import java.util.List;
+
+import com.springboard.vo.BoardVO;
+
+public interface BoardMapper {
+
+	List<BoardVO> selectBoard();
+	int insertBoard(BoardVO board);
+	
+}

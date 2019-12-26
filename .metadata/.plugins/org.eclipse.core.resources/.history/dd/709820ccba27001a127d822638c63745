@@ -1,0 +1,74 @@
+package com.springboard.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.springboard.service.BoardService;
+import com.springboard.vo.BoardVO;
+
+@Controller
+@RequestMapping(path = { "/board" })
+public class BoardController {
+	
+	@Autowired
+	@Qualifier("boardService")
+	private BoardService boardService;
+	
+	@GetMapping(path = { "/list.action" })
+	public String list(Model model) { // view list
+		
+		// lookup data (request service)
+		List<BoardVO> boards = boardService.findBoard();
+		
+		// put boards into Model type argument
+		model.addAttribute("boards", boards);
+		
+		return "board/list"; // /WEB-INF/views/ + board/list + .jsp
+	}
+	
+	@GetMapping(path = { "/write.action" })
+	public String showWriteForm() { // view write
+		
+		return "board/write";
+	}
+	
+	@PostMapping(path = { "/write.action" })
+	public String write(BoardVO board, RedirectAttributes attr) { // process write
+		
+		int newBoardNo = boardService.writeBoard(board);
+//		log.warn("NEW BOARD NO : " + newBoardNo);
+		
+		// 1. pass data with GET
+//		return "redirect:list.action?newBno=" + newBoardNo;
+		
+		// 2. pass data using Spring function
+		attr.addFlashAttribute("newBno", newBoardNo); // save data in session
+		return "redirect:list.action";
+	}
+	
+	@GetMapping(path = { "/detail.action" })
+	public String showDetail() {
+		
+		return "board/detail";
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

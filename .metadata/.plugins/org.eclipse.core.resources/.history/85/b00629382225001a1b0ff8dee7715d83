@@ -1,0 +1,11 @@
+package com.springboard.service;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Override
+	public int writeBoard() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

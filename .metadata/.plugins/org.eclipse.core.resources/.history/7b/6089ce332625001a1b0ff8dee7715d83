@@ -1,0 +1,5 @@
+package com.springboard.repository;
+
+public class RawJdbcBoardDao implements BoardDao {
+
+}

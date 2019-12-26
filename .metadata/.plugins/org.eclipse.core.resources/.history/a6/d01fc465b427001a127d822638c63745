@@ -1,0 +1,13 @@
+package com.springboard.mapper;
+
+import java.util.List;
+
+import com.springboard.vo.BoardVO;
+
+// interface의 package와 name은 board-mapper.xml의 namespace와 일치하도록 설정
+public interface BoardMapper {
+
+	List<BoardVO> selectBoard();
+	int insertBoard(BoardVO board);
+	
+}

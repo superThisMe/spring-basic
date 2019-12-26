@@ -1,0 +1,7 @@
+package com.springboard.service;
+
+public interface BoardService {
+
+	int writeBoard();
+	
+}

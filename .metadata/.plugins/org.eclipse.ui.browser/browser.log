@@ -1,0 +1,4 @@
+
+12월 26, 2019 09:51:39.04 NEW SESSION
+12월 26, 2019 09:51:39.04 [3312:1032:1226/095139.039:ERROR:component_installer.cc(320)] Failed to read manifest or verify installation for CRLSet (C:\Users\goott6\AppData\Local\Google\Chrome\User Data\CertificateRevocation\5589).: 지정된 파일을 찾을 수 없습니다. (0x2)
+12월 26, 2019 09:51:39.05 [3312:6088:1226/095139.052:ERROR:component_installer.cc(320)] Failed to read manifest or verify installation for Safety Tips (C:\Users\goott6\AppData\Local\Google\Chrome\User Data\SafetyTips\39).: 지정된 파일을 찾을 수 없습니다. (0x2)

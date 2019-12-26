@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:env.properties" />
+	</bean>
+
+	<bean id="boardService"
+		class="com.springboard.service.BoardServiceImpl">
+		<!-- <property name="boardDao" ref="boardDao" /> -->
+		<!-- <property name="boardDao" ref="cpBoardDao" /> -->
+		<property name="boardDao" ref="templateBoardDao" />
+	</bean>
+
+	<bean id="boardDao"
+		class="com.springboard.repository.RawJdbcBoardDao" />
+
+	<bean id="cpBoardDao"
+		class="com.springboard.repository.RawJdbcWithConnectionPoolBoardDao">
+		<!-- <property name="dataSource" ref="apacheDataSource" /> -->
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+
+	<bean id="templateBoardDao"
+		class="com.springboard.repository.JdbcTemplateBoardDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+
+	<bean id="apacheDataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="springboard" />
+		<property name="password" value="9922" />
+		<property name="minIdle" value="20" />
+		<property name="maxTotal" value="100" />
+		<property name="maxWaitMillis" value="30000" />
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource">
+		<property name="driverClassName"
+			value="${dataSource.driverClassName}" />
+		<property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
+		<property name="minimumIdle"
+			value="${dataSource.minimumIdle}" />
+		<property name="maximumPoolSize"
+			value="${dataSource.maximumPoolSize}" />
+		<property name="connectionTimeout"
+			value="${dataSource.connectionTimeout}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="apacheDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+	
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	
+	</bean>
+	
+</beans>

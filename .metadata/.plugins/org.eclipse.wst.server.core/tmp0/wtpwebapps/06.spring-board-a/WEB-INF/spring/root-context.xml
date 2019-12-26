@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:env.properties" />
+	</bean>
+
+	<bean id="boardService"
+		class="com.springboard.service.BoardServiceImpl">
+		<!-- <property name="boardDao" ref="boardDao" /> -->
+		<!-- <property name="boardDao" ref="cpBoardDao" /> -->
+		<!-- <property name="boardDao" ref="templateBoardDao" /> -->
+		<!-- <property name="boardDao" ref="mybatisBoardDao" /> -->
+		<property name="boardDao" ref="mapperBoardDao" />
+		<property name="boardMapper" ref="boardMapper" />
+	</bean>
+
+	<bean id="boardDao"
+		class="com.springboard.repository.RawJdbcBoardDao" />
+
+	<bean id="cpBoardDao"
+		class="com.springboard.repository.RawJdbcWithConnectionPoolBoardDao">
+		<!-- <property name="dataSource" ref="apacheDataSource" /> -->
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+
+	<bean id="templateBoardDao"
+		class="com.springboard.repository.JdbcTemplateBoardDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+
+	<bean id="apacheDataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="springboard" />
+		<property name="password" value="9922" />
+		<property name="minIdle" value="20" />
+		<property name="maxTotal" value="100" />
+		<property name="maxWaitMillis" value="30000" />
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource">
+		<property name="driverClassName"
+			value="${dataSource.driverClassName}" />
+		<property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
+		<property name="minimumIdle"
+			value="${dataSource.minimumIdle}" />
+		<property name="maximumPoolSize"
+			value="${dataSource.maximumPoolSize}" />
+		<property name="connectionTimeout"
+			value="${dataSource.connectionTimeout}" />
+	</bean>
+
+	<bean id="mybatisBoardDao"
+		class="com.springboard.repository.MyBatisBoardDao">
+		<property name="sessionTemplate" ref="sessionTemplate" />
+	</bean>
+
+	<!-- beans for MyBatis & MyBatis-Spring -->
+	<!-- Call SqlSessionFactoryBean.getObject() -> initiate Object (SqlSessionFactory) -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="apacheDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="mapperBoardDao"
+		class="com.springboard.repository.MyBatisMapperBoardDao">
+		<property name="boardMapper" ref="boardMapper" />
+	</bean>
+	
+	<!-- BoardMapper interface를 implements한 (자동 생성된) class object 생성 -->
+	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.springboard.mapper.BoardMapper" />
+		<property name="sqlSessionTemplate" ref="sessionTemplate" />
+	</bean>
+	
+</beans>

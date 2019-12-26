@@ -1,0 +1,9 @@
+package com.springboard.service;
+
+import com.springboard.vo.BoardVO;
+
+public interface BoardService {
+
+	int writeBoard(BoardVO board);
+	
+}

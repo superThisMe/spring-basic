@@ -1,0 +1,57 @@
+package com.springboard.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.springboard.service.BoardService;
+import com.springboard.vo.BoardVO;
+
+@Controller
+@RequestMapping(path = { "/board" })
+public class BoardController {
+	
+	@Autowired
+	@Qualifier("boardService")
+	private BoardService boardService;
+	
+	@GetMapping(path = { "/list.action" })
+	public String list() { // view list
+		
+		// 데이터 조회 (서비스에 요청)
+		List<BoardVO> boards = boardService.findBoard();		
+		
+		return "board/list"; // /WEB-INF/views/ + board/list + .jsp
+	}
+	
+	@GetMapping(path = { "/write.action" })
+	public String showWriteForm() { // view write
+		
+		return "board/write";
+	}
+	
+	@PostMapping(path = { "/write.action" })
+	public String write(BoardVO board) { // process write
+		
+		boardService.writeBoard(board);		
+		
+		return "redirect:list.action";
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

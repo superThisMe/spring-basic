@@ -1,0 +1,50 @@
+package com.springboard.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.springboard.vo.BoardVO;
+
+import lombok.extern.log4j.Log4j;
+
+@Controller
+@RequestMapping(path = { "/board" })
+@Log4j // lombok이 log 변수를 자동으로 생성
+public class BoardController {
+	
+	@GetMapping(path = { "/list.action" })
+	public String list() {
+		
+		return "board/list"; // /WEB-INF/views/ + board/list + .jsp
+	}
+	
+	@GetMapping(path = { "/write.action" })
+	public String showWriteForm() {
+		
+		return "board/write";
+	}
+	
+	@PostMapping(path = { "/write.action" })
+	public String write(BoardVO board) {
+		
+		log.warn(board.getTitle());
+		log.warn(board.getWriter());
+		log.warn(board.getContent());
+		
+		return "redirect:list.action";
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

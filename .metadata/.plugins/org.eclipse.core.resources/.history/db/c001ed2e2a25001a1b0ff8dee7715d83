@@ -1,0 +1,21 @@
+package com.springboard.service;
+
+import java.util.List;
+
+import com.springboard.vo.BoardVO;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Override
+	public int writeBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> findBoard() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

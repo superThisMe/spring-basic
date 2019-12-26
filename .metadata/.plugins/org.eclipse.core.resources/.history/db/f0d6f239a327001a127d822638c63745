@@ -1,0 +1,32 @@
+package com.springboard.repository;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+import com.springboard.vo.BoardVO;
+
+import lombok.Setter;
+
+public class MyBatisBoardDao implements BoardDao {
+
+	@Setter
+	private SqlSessionTemplate sessionTemplate;
+
+	@Override
+	public int insertBoard(BoardVO board) {
+
+		sessionTemplate.insert("com.springboard.mapper.BoardMapper.insertBoard", board);
+		
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> selectBoard() {
+
+		List<BoardVO> boards = sessionTemplate.selectList("com.springboard.mapper.BoardMapper.selectBoard");
+		
+		return boards;
+	}
+
+}

@@ -1,0 +1,48 @@
+package com.springboard.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.springboard.service.BoardService;
+import com.springboard.service.BoardServiceImpl;
+import com.springboard.vo.BoardVO;
+
+@Controller
+@RequestMapping(path = { "/board" })
+public class BoardController {
+	
+	@GetMapping(path = { "/list.action" })
+	public String list() {
+		
+		return "board/list"; // /WEB-INF/views/ + board/list + .jsp
+	}
+	
+	@GetMapping(path = { "/write.action" })
+	public String showWriteForm() {
+		
+		return "board/write";
+	}
+	
+	@PostMapping(path = { "/write.action" })
+	public String write(BoardVO board) {
+		
+		BoardService boardService = new BoardServiceImpl();
+		boardService.writeBoard(board);		
+		
+		return "redirect:list.action";
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
