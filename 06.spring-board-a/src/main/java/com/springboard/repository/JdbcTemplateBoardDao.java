@@ -2,13 +2,12 @@ package com.springboard.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import com.springboard.vo.BoardVO;
@@ -57,37 +56,43 @@ public class JdbcTemplateBoardDao implements BoardDao {
 		return holder.getKey().intValue();
 	}
 
+//	@Override
+//	public List<BoardVO> selectBoard() {
+//
+//		String sql = "SELECT bno, title, writer, regdate, updatedate, deleted, readcount " + "FROM tbl_board "
+//				+ "ORDER BY bno DESC";
+//
+////		BoardRowMapper mapper = new BoardRowMapper();
+//
+//		// make nonamed class that implements RowMapper<BoardVO> + initiate class
+//		// instance
+//		RowMapper<BoardVO> mapper = new RowMapper<BoardVO>() {
+//			// ResultSet -> VO
+//			@Override
+//			public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+//
+//				BoardVO board = new BoardVO();
+//				board.setBno(rs.getInt(1));
+//				board.setTitle(rs.getString(2));
+//				board.setWriter(rs.getString(3));
+//				board.setRegDate(rs.getDate(4));
+//				board.setUpdateDate(rs.getDate(5));
+//				board.setDeleted(rs.getBoolean(6));
+//				board.setReadCount(rs.getInt(7));
+//
+//				return board;
+//			}
+//		};
+//
+//		List<BoardVO> boards = jdbcTemplate.query(sql, mapper);
+//
+//		return boards;
+//	}
+
 	@Override
-	public List<BoardVO> selectBoard() {
-
-		String sql = "SELECT bno, title, writer, regdate, updatedate, deleted, readcount " + "FROM tbl_board "
-				+ "ORDER BY bno DESC";
-
-//		BoardRowMapper mapper = new BoardRowMapper();
-
-		// make nonamed class that implements RowMapper<BoardVO> + initiate class
-		// instance
-		RowMapper<BoardVO> mapper = new RowMapper<BoardVO>() {
-			// ResultSet -> VO
-			@Override
-			public BoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-				BoardVO board = new BoardVO();
-				board.setBno(rs.getInt(1));
-				board.setTitle(rs.getString(2));
-				board.setWriter(rs.getString(3));
-				board.setRegDate(rs.getDate(4));
-				board.setUpdateDate(rs.getDate(5));
-				board.setDeleted(rs.getBoolean(6));
-				board.setReadCount(rs.getInt(7));
-
-				return board;
-			}
-		};
-
-		List<BoardVO> boards = jdbcTemplate.query(sql, mapper);
-
-		return boards;
+	public List<BoardVO> selectBoardWithPaging(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

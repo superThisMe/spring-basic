@@ -2,8 +2,8 @@
 <aop-reference-model>
 <aop-project name="03.spring-IoC-a-setter-lombok"/>
 <aop-project name="03.spring-ioc-d"/>
-<aop-project name="05.spring-mvc-d"/>
 <aop-project name="05.spring-mvc-b"/>
+<aop-project name="05.spring-mvc-d"/>
 <aop-project name="06.spring-board-a"/>
 <aop-project name="03.spring-ioc-c"/>
 <aop-project name="03.spring-ioc-e"/>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- package-name : com.springboard.mapper, class-name : BoardMapper -->
+<mapper namespace="com.springboard.mapper.BoardMapper">
+
+	<select id="selectBoard" resultType="BoardVO">
+		SELECT bno, title, writer, regdate, updatedate, deleted, readcount
+		FROM tbl_board
+		WHERE deleted = '0'
+		ORDER BY bno DESC
+	</select>
+	
+	<insert id="insertBoard" parameterType="BoardVO" useGeneratedKeys="true" keyColumn="bno" keyProperty="bno">
+		INSERT INTO tbl_board (bno, title, writer, content)
+		VALUES (seq_board.nextval, #{title}, #{writer}, #{content})
+	</insert>
+	
+	<!-- <insert id="insertBoard" parameterType="BoardVO">
+		<selectKey keyProperty="bno" resultType="int" order="AFTER">
+			SELECT seq_board.currval FROM DUAL
+		</selectKey>
+		INSERT INTO tbl_board (bno, title, writer, content)
+		VALUES (seq_board.nextval, #{title}, #{writer}, #{content})
+	</insert> -->
+	
+	<select id="selectBoardByBno" parameterType="int" resultType="BoardVO">
+		SELECT bno, title, writer, content, regdate, updatedate, readcount
+		FROM tbl_board
+		WHERE bno = #{bno} AND deleted = '0'
+	</select>
+	
+	<!-- <delete id="deleteBoard" parameterType="int">
+		DELETE FROM tbl_board
+		WHERE bno = #{bno}	
+	</delete> -->
+	
+	<update id="deleteBoard" parameterType="int">
+		UPDATE tbl_board
+		SET deleted = '1'
+		WHERE bno = #{bno}
+	</update>
+
+</mapper>

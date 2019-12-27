@@ -87,6 +87,8 @@
 									name='readCount' value="${ board.readCount }">
 							</div>
 
+							<button id="edit-button" type="button" class="btn btn-success">수정</button>
+							<button id="delete-button" type="button" class="btn btn-success">삭제</button>
 							<button id="tolist-button" type="button" class="btn btn-success">목록</button>
 						</div>
 					</div>
@@ -104,13 +106,24 @@
 
 	<script type="text/javascript">
 		$(function() {
-			$('#tolist-button').on('click', function(event) {
-				location.href = "list.action";
-			});
 
 			$('input, textarea').attr({
 				'readonly' : 'readonly'
 			});
+			
+			$('#delete-button').on('click', function(event) {
+				location.href = "delete.action?bno=${ board.bno }";
+			});
+
+			$('#edit-button').on('click', function(event) {
+				location.href = "update.action?bno=${ board.bno }";
+			});
+			
+			$('#tolist-button').on('click', function(event) {
+				// location.href = "list.action";
+				history.back();
+			});
+			
 		});
 	</script>
 

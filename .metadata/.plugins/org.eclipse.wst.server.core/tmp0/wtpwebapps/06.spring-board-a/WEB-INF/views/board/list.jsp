@@ -86,6 +86,11 @@
 											</tr>
 										</c:forEach>
 									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="6" align="center">${ pager }</td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 						</div>
