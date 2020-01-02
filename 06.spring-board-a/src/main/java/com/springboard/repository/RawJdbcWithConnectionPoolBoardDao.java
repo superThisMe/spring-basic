@@ -1,8 +1,10 @@
 package com.springboard.repository;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.HashMap;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,99 +15,108 @@ import lombok.Setter;
 
 public class RawJdbcWithConnectionPoolBoardDao implements BoardDao {
 	
-//	private DataSource dataSource = new org.apache.commons.dbcp2.BasicDataSource();
+//	private DataSource dataSource = 
+//			new org.apache.commons.dbcp2.BasicDataSource();
 	
 	@Setter
 	private DataSource dataSource;
 
 	@Override
 	public int insertBoard(BoardVO board) {
-
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		try {
-			// 1. get connection from connection pool
+		try {		
 			conn = dataSource.getConnection();
-
-			// 2. create command
+			
+			//3. 명령 만들기
 			String sql = 
-					"INSERT INTO tbl_board (bno, title, writer, content) " + 
-					"VALUES (seq_board.nextval, ?, ?, ?)";
+				"INSERT INTO tbl_board (bno, title, writer, content) " +
+				"VALUES (seq_board.nextval, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getWriter());
 			pstmt.setString(3, board.getContent());
 			
-			// 3. execute command
-			pstmt.executeUpdate(); // for INSERT, UPDATE, DELETE
+			//4. 명령 실행
+			pstmt.executeUpdate(); // for insert, update, delete
 			
-			// 4. process result (if 'SELECT')
-		} catch (Exception e) {
-			e.printStackTrace();
+			//5. 결과 처리 (select인 경우)
+		} catch (Exception ex) {
+			
 		} finally {
-			// 5. close connection
-			try { pstmt.close(); } catch (Exception e) {}
-			try { conn.close(); } catch (Exception e) {}
+			//6. 연결 닫기
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
 		}
-
+		
 		return 0;
 	}
 
-//	@Override
-//	public List<BoardVO> selectBoard() {
-//		
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		ArrayList<BoardVO> boards = new ArrayList<>();
-//		
-//		try {
-//			// 1. get connection from connection pool
-//			conn = dataSource.getConnection();
-//
-//			// 2. create command
-//			String sql = 
-//					"SELECT bno, title, writer, regdate, updatedate, deleted, readcount " + 
-//					"FROM tbl_board " +
-////					"WHERE deleted = '0' " +
-//					"ORDER BY bno DESC";
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			// 3. execute command
-////			pstmt.executeUpdate(); // for INSERT, UPDATE, DELETE
-//			rs = pstmt.executeQuery();
-//			 
-//			// 4. process result (if 'SELECT')
-//			while (rs.next()) {
-//				BoardVO board = new BoardVO();
-//				board.setBno(rs.getInt(1));
-//				board.setTitle(rs.getString(2));
-//				board.setWriter(rs.getString(3));
-//				board.setRegDate(rs.getDate(4));
-//				board.setUpdateDate(rs.getDate(5));
-//				board.setDeleted(rs.getBoolean(6));
-//				board.setReadCount(rs.getInt(7));
-//				
-//				boards.add(board);
-//			}			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			// 5. close connection
-//			try { rs.close(); } catch (Exception e) {}
-//			try { pstmt.close(); } catch (Exception e) {}
-//			try { conn.close(); } catch (Exception e) {}
-//		}
-//		
-//		return boards;
-//	}
-
 	@Override
-	public List<BoardVO> selectBoardWithPaging(HashMap<String, Object> params) {
+	public List<BoardVO> selectBoard() {
 		
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> boards = new ArrayList<>(); //조회 결과 저장 변수
+		
+		try {
+			//1. 커넥션풀에서 연결 가져오기
+			conn = dataSource.getConnection();
+			
+			//3. 명령 만들기
+			String sql = 
+				"SELECT bno, title, writer, regdate, updatedate, deleted, readcount " +
+				"FROM tbl_board  ";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4. 명령 실행
+			rs = pstmt.executeQuery();
+			
+			//5. 결과 처리 (select인 경우)
+			while (rs.next()) {
+				// 한 행의 데이터를 읽어서 객체에 저장
+				BoardVO board = new BoardVO();
+				board.setBno(rs.getInt(1));
+				board.setTitle(rs.getString(2));
+				board.setWriter(rs.getString(3));
+				board.setRegDate(rs.getDate(4));
+				board.setUpdateDate(rs.getDate(5));
+				board.setDeleted(rs.getBoolean(6));
+				board.setReadCount(rs.getInt(7));
+				
+				boards.add(board); //한 행의 데이터를 결과 목록에 추가
+				
+			}
+		} catch (Exception ex) {
+			//ex.printStackTrace(); // 오류 메시지를 출력
+		} finally {
+			//6. 연결 닫기
+			try { rs.close(); } catch (Exception ex) {}
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
+		
+		return boards;
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

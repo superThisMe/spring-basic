@@ -9,12 +9,13 @@ public class ThePager {
 	private int pagerSize;//번호로 보여주는 페이지 Link 개수
 	private int dataCount;//총 데이터 수
 	
-	private int currentPage;//현재 페이지 번호
+	private int pageNo;//현재 페이지 번호
 	private int pageCount;//총 페이지 수
 	
 	private String linkUrl;//페이저가 포함되는 페이지의 주소
 	
-	public ThePager(int dataCount, int currentPage, 
+	
+	public ThePager(int dataCount, int pageNo, 
 		int pageSize, int pagerSize, String linkUrl) {
 		
 		this.linkUrl = linkUrl;
@@ -22,7 +23,7 @@ public class ThePager {
 		this.dataCount = dataCount;
 		this.pageSize = pageSize;
 		this.pagerSize = pagerSize;
-		this.currentPage = currentPage;		
+		this.pageNo = pageNo;		
 		pageCount = 
 			(dataCount / pageSize) + ((dataCount % pageSize) > 0 ? 1 : 0); 
 	}
@@ -31,24 +32,24 @@ public class ThePager {
 		StringBuffer linkString = new StringBuffer(2048);
 		
 		//1. 처음, 이전 항목 만들기
-		if (currentPage > 1) {
+		if (pageNo > 1) {
 			linkString.append(
-				String.format("[<a href='%s?pageNo=1'>처음</a>]", linkUrl));
+				String.format("[<a href='%s?pageNo=1'>처음</a>]",linkUrl));
 			linkString.append("&nbsp;");
 			linkString.append("&nbsp;");
 			linkString.append(String.format(
-				"[<a href='%s?pageNo=%d'>이전</a>]", linkUrl, currentPage - 1));
+				"[<a href='%s?pageNo=%d'>이전</a>]", linkUrl, pageNo - 1));
 			linkString.append("&nbsp;");
 		}
 		
 		//2. 페이지 번호 Link 만들기
-		int pagerBlock = (currentPage - 1) / pagerSize;
+		int pagerBlock = (pageNo - 1) / pagerSize;
 		int start = (pagerBlock * pagerSize) + 1;
 		int end = start + pagerSize;
 		for (int i = start; i < end; i++) {
 			if (i > pageCount) break;
 			linkString.append("&nbsp;");
-			if(i == currentPage) {
+			if(i == pageNo) {
 				linkString.append(String.format("[%d]", i));
 			} else { 
 				linkString.append(String.format(
@@ -58,10 +59,10 @@ public class ThePager {
 		}
 		
 		//3. 다음, 마지막 항목 만들기
-		if (currentPage < pageCount) {
+		if (pageNo < pageCount) {
 			linkString.append("&nbsp;");
 			linkString.append(String.format(
-				"[<a href='%s?pageNo=%d'>다음</a>]", linkUrl, currentPage + 1));
+				"[<a href='%s?pageNo=%d'>다음</a>]",linkUrl, pageNo + 1));
 			linkString.append("&nbsp;");
 			linkString.append("&nbsp;");
 			linkString.append(String.format(

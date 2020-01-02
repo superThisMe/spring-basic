@@ -8,12 +8,13 @@ import com.springboard.vo.BoardVO;
 public interface BoardService {
 
 	int writeBoard(BoardVO board);
-//	List<BoardVO> findBoard();
+	List<BoardVO> findBoard();
 	List<BoardVO> findBoardWithPaging(HashMap<String, Object> params);
-	BoardVO fintBoardByBno(int bno);
+	BoardVO findBoardByBno(int bno);
 	void deleteBoard(int bno);
 	void updateBoard(BoardVO board);
 	void increaseReadCount(int bno);
-	int findBoardCount();
-
+	int findBoardCount(HashMap<String, Object> params);
+	
+	
 }

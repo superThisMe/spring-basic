@@ -96,6 +96,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\workspace\spring-basic\07.spring-ajax"/>
 			<item value="C:\workspace\spring-basic\06.spring-board-a"/>
 			<item value="C:\workspace\spring-basic\05.spring-mvc-b"/>
 			<item value="C:\workspace\spring-basic\05.spring-mvc-a"/>
