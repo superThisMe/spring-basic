@@ -1,0 +1,35 @@
+package com.springboard.service;
+
+import java.util.List;
+
+import com.springboard.mapper.ReplyMapper;
+import com.springboard.vo.ReplyVO;
+
+import lombok.Setter;
+
+public class ReplyServiceImpl implements ReplyService {
+
+	@Setter
+	private ReplyMapper replyMapper;
+	
+	@Override
+	public void writeReply(ReplyVO reply) {
+		
+		replyMapper.insertReply(reply);
+		
+	}
+
+	@Override
+	public List<ReplyVO> getReplyList(int bno) {
+		
+		return replyMapper.selectRepliesByBno(int bno);
+	}
+
+	@Override
+	public void deleteReply(int rno) {
+		
+		replyMapper.deleteReply(rno);
+		
+	}
+
+}

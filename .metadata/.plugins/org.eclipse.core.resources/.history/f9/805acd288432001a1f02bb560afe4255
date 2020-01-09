@@ -1,0 +1,8 @@
+package com.springboard.vo;
+
+public class MemberVO {
+
+	private String email;
+	private String passwd;
+	
+}

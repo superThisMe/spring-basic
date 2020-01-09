@@ -1,0 +1,11 @@
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; utf-8"
+	pageEncoding="utf-8"%>
+
+<h2>춥고 배고프고 졸리다</h2>
+
+<div style="border: solid 1px; padding: 10px; font-size: 40pt; test-align: center">
+
+	<%= new Date().toString() %>
+
+</div>

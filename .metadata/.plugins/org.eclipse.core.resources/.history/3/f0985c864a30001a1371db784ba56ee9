@@ -1,0 +1,9 @@
+package com.springboard.service;
+
+import com.springboard.vo.ReplyVO;
+
+public interface ReplyService {
+	
+	int writeReply(ReplyVO reply);
+
+}

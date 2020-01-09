@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- package-name : com.springboard.mapper, class-name : BoardMapper -->
+<mapper namespace="com.springboard.mapper.ReplyMapper">
+	
+	<insert id="insertReply" parameterType="ReplyVO" useGeneratedKeys="true" keyColumn="rno" keyProperty="rno">
+		INSERT INTO tbl_reply (
+			rno, bno, reply, replyer, gno, sno, depth
+		)
+		VALUES (
+			seq_reply.nextval, #{bno}, #{reply}, #{replyer}, seq_reply.currval, 1, 0
+		)		
+	</insert>
+	
+</mapper>
+
+
+
+
+

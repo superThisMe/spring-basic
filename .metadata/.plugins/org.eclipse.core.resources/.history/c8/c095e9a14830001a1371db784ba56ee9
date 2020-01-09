@@ -1,0 +1,13 @@
+package com.springboard.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.springboard.vo.ReplyVO;
+
+@Mapper // Find com/springboard/mapper/ReplyMapper.xml -> Binding
+		// root-context.xml 파일에 자동으로 bean 등록 (MapperFactoryBean 사용)
+public interface ReplyMapper {
+
+	int insertReply(ReplyVO reply);
+	
+}

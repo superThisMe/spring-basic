@@ -2,6 +2,8 @@ package com.demoweb.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 //데이터베이스의 Member 테이블의 데이터를 저장하는 클래스
@@ -13,7 +15,19 @@ public class Member {
 	private String passwd;
 	private String email;
 	private String userType;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, 
+				pattern = "yyyy-MM-dd",
+				timezone = "Asia/Seoul")
 	private Date regDate;
 	private boolean active;
 
 }
+
+
+
+
+
+
+
+
+

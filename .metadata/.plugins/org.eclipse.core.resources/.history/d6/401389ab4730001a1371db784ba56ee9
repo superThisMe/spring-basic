@@ -1,0 +1,18 @@
+package com.springboard.service;
+
+import com.springboard.vo.ReplyVO;
+
+import lombok.Setter;
+
+public class ReplyServiceImpl implements ReplyService {
+
+	@Setter
+	private ReplyMapper replyMapper;
+	
+	@Override
+	public int writeReply(ReplyVO reply) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

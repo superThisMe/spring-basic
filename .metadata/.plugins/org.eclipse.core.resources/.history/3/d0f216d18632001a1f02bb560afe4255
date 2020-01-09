@@ -1,0 +1,5 @@
+package com.springboard.interceptor;
+
+public class AuthInterceptor {
+
+}

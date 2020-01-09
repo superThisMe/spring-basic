@@ -1,0 +1,26 @@
+package com.demoweb.service;
+
+import com.demoweb.dao.MemberDao;
+import com.demoweb.vo.Member;
+
+public class MemberService {
+	
+	private MemberDao memberDao = new MemberDao();
+	
+	public Member searchMemberById(String memberId) {
+		
+		return memberDao.selectMemberById(memberId);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

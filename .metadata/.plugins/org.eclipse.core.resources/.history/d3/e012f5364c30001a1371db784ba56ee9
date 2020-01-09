@@ -1,0 +1,31 @@
+package com.springboard.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.springboard.service.ReplyService;
+import com.springboard.vo.ReplyVO;
+
+@RestController // @Controller + 모든 요청 메서드에 @ResponseBody
+@RequestMapping(path= { "/reply" })
+public class ReplyController {
+	
+	@Autowired
+	@Qualifier("replyService")
+	private ReplyService replyService;
+	
+	@PostMapping("/write")
+	public String reply(ReplyVO reply) {
+		
+		// reply.getRno() -> 0
+		replyService.writeReply(reply);
+		
+		// reply.getRno() -> 새로 등록된 Reply 번호
+		
+		return "success";
+	}
+
+}

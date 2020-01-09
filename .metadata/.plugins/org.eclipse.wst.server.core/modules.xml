@@ -5,6 +5,7 @@
   <module moduleId="org.eclipse.jst.jee.server:05.spring-mvc-b" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:05.spring-mvc-c" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:05.spring-mvc-d" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:08.spring-board-b" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.j2ee.server:mvc-demoweb" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:06.spring-board-a" serverId="Tomcat v9.0 Server at localhost"/>
 </modules>

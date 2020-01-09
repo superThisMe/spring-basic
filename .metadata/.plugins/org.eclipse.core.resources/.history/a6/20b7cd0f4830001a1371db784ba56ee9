@@ -1,0 +1,9 @@
+package com.springboard.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper // com.springboard.maper.ReplyMapper.xml 파일을 찾아서 binding
+		// root-context.xml 파일에 자동으로 bean 등록 (MapperFactoryBean 사용)
+public interface ReplyMapper {
+
+}

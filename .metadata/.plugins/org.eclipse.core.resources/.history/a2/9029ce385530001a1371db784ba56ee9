@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<html>
+<head>
+	<title>view-snippet</title>
+</head>
+<body>
+	<h2>춥고 배고프고 졸리다</h2>
+</body>
+</html>

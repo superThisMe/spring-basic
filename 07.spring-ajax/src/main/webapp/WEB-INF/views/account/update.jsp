@@ -22,69 +22,50 @@
 		    <div id="inputmain">
 		        <div class="inputsubtitle">회원기본정보</div>
 
-		        <form id="registerform">
+		        
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>
 		                <td>
 		                    <input type="text" id="memberId" name="memberId" 
-		                    	   style="width:280px" readonly="readonly" value="${ loginuser.memberId }" />
-		                    	   <%-- ((Member)session('loginuser').getMemberId() --%>
-		                </td>
-		            </tr>
-		            <tr>
-		                <th>비밀번호</th>
-		                <td>
-		                	<input type="password" id="passwd" name="passwd" 
-		                		   style="width:280px" />
-		                </td>
-		            </tr>
-		            <tr>
-		                <th>비밀번호 확인</th>
-		                <td>
-		                    <input type="password" id="confirm" name="confirm" style="width:280px" />
+		                    	   style="width:230px" />
+		                    <button id="search-button">검색</button>
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>이메일</th>
 		                <td>
 		                	<input type="text" id="email" name="email" 
-		                		   style="width:280px" value="${ loginuser.email }" />
-		                		   <%-- ((Member)session('loginuser').getEmail() --%>
+		                		   style="width:280px" readonly="readonly" />		                		   
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>등록일자</th>
 		                <td>
 		                	<input type="text" id="regDate" name="regDate" 
-		                		style="width:280px" readonly="readonly" value="${ loginuser.regDate }" />
-		                		<%-- ((Member)session('loginuser').getRegDate() --%>
+		                		style="width:280px" readonly="readonly" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>사용자구분</th>
 		                <td>
 		                	<input type="text" id="userType" name="userType" 
-		                		   style="width:280px" readonly="readonly" value="${ loginuser.userType }" />
-		                		   <%-- ((Member)session('loginuser').getUserType() --%>
+		                		   style="width:280px" readonly="readonly" />
 		                </td>
 		            </tr>
 		            <tr>
 		                <th>활성화여부</th>
 		                <td>
 		                	<input type="text" id="active" name="active" 
-		                		   style="width:280px" readonly="readonly" value="${ loginuser.active }" />
-		                		   <%-- ((Member)session('loginuser').isActive() --%>
+		                		   style="width:280px" readonly="readonly" />
 		                </td>
 		            </tr>
 		                       		            
 		        </table>
 		        <div class="buttons">
-		        	<input id="update" type="submit" value="정보수정" style="height:25px" />
-		        	<input id="cancel" type="button" value="취소" style="height:25px"  />
-
+		        	
 		        </div>
-		        </form>
+		        
 		    </div>
 		</div>   	
 	
@@ -92,10 +73,39 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 	$(function() {
-		$('#cancel').on('click', function(event) {
-			location.href = "/demoweb/home.action";
-			//history.back();
+
+		$('#search-button').on('click', function(event) {
+
+			var memberId = $('#memberId').val();
+			if (!memberId) { // !memberId : memberId == null or memberId.length == 0
+				alert('검색할 아이디를 입력하세요');
+				$('#memberId').focus();
+			}
+			
+			$.ajax({
+				"url": "search-member",
+				"method": "get",
+				"async": true,
+				//"data": "memberId=" + memberId + "&datax=100",
+				"data": { "memberId": memberId, "datax": 100 },				
+				"success": function(resp, status, xhr) {
+					if (resp.startsWith("fail to")){
+						alert('검색 실패');
+					}
+					
+					var member = resp.split("|");// 'a|b|c' -> ['a', 'b', 'c']
+					$('#email').val(member[1]);
+					$('#userType').val(member[2]);
+					$('#regDate').val(member[3]);
+					$('#active').val(member[4]);
+				},
+				"error": function(xhr, status, err) {
+					alert(err);
+				}
+			});
+			
 		});
+		
 	});
 	</script>
 

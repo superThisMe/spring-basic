@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<list key="installedFeatures">
 		<item value="com.ianbrandt.tools.m2e.mdp.feature:0.0.4.201409291703"/>
+		<item value="com.tomato.exerd.feature:3.3.0.20200107-1407"/>
 		<item value="org.aspectj:1.9.2.201911072000"/>
 		<item value="org.eclipse.ajdt:2.2.4.201911072000"/>
 		<item value="org.eclipse.buildship:3.1.3.v20191118-1057"/>
@@ -68,8 +69,9 @@
 		<item value="org.springframework.ide.eclipse.xml.namespaces.feature:3.9.11.201912160804-RELEASE"/>
 	</list>
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="com.springsource.sts.wizard.template"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.project"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
 			<item value="org.springframework.ide.eclipse.beans.ui.wizards.category"/>
 		</list>
 	</section>
@@ -96,6 +98,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\workspace\spring-basic\08.spring-board-b"/>
 			<item value="C:\workspace\spring-basic\07.spring-ajax"/>
 			<item value="C:\workspace\spring-basic\06.spring-board-a"/>
 			<item value="C:\workspace\spring-basic\05.spring-mvc-b"/>
@@ -108,5 +111,10 @@
 		<item key="DIALOG_WIDTH" value="500"/>
 		<item key="DIALOG_HEIGHT" value="418"/>
 		<item key="TOGGLE_SELECTED" value="false"/>
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
 	</section>
 </section>
